@@ -21,13 +21,13 @@ var config = {
 var pool = new pg.Pool(config);
 console.log('clients connected: ', connectCount);
 
-var acquireCount = 0
+var acquireCount = 0;
 pool.on('acquire', function (client) {
   acquireCount++;
   console.log('client acquired: ', acquireCount);
-})
+});
 
-var connectCount = 0
+var connectCount = 0;
 pool.on('connect', function () {
   connectCount++;
   console.log('client connected: ', connectCount);

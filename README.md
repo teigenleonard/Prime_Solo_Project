@@ -37,3 +37,6 @@ changed passport_users database in connection.js (only need to update this DB na
 generate an SQL file with the create table SQL commands
           or
 have it hosted on heroku so they don't have to download file to set it up
+
+if creating multiple accounts, make sure all permission checks are on
+server and not client side.
