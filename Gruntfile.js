@@ -8,7 +8,6 @@ module.exports = function(grunt){
           dest : 'server/public/assets/scripts/client.min.js'
         }
       },
-
       copy : {
         scripts : {
           expand : true,
@@ -51,7 +50,7 @@ module.exports = function(grunt){
                   'angular-route.min.js',
                   'angular-route.min.js.map' ],
           dest : 'server/public/vendors/angular-route/'
-        }
+        },
       },
 
       watch : {
