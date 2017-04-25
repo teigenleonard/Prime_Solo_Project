@@ -14,7 +14,7 @@ module.exports = function(grunt){
           expand : true,
           cwd : 'client/',
           src : [ 'scripts/*.js', 'scripts/**/*.js' ],
-          dest : 'server/public/'
+          dest : 'server/public/assets'
         },
         html : {
           expand : true,
@@ -58,7 +58,7 @@ module.exports = function(grunt){
         files : [
           'client/**/*.*'
         ],
-        tasks : [ 'uglifiy', 'copy' ]
+        tasks : [ 'uglify', 'copy' ]
       }
   });
 

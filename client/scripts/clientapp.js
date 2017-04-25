@@ -15,6 +15,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/user.html',
       controller: "UserController"
     })
+    .when('/trips', {
+      templateUrl: '/views/trips.html',
+      controller: "TripController"
+    })
+    .when('/packingList', {
+      templateUrl: '/views/packingList.html',
+      controller: "PackingListController"
+    })
     .otherwise({
       redirectTo: 'home'
     });
