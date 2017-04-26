@@ -4,29 +4,34 @@ var myApp = angular.module('myApp', ['ngRoute']);
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/home', {
-      templateUrl : '/views/home.html',
+      templateUrl : '/views/templates/home.html',
       controller : "LoginController"
       // controllerAs :
     })
     .when('/register', {
-      templateUrl: '/views/register.html',
+      templateUrl: '/views/templates/register.html',
       controller: "LoginController"
       // controllerAs :
     })
     .when('/user', {
-      templateUrl: '/views/user.html',
+      templateUrl: '/views/templates/user.html',
       controller: "UserController"
       // controllerAs :
     })
     .when('/trips', {
-      templateUrl: '/views/trips.html',
+      templateUrl: '/views/templates/trips.html',
       controller: "TripController",
       controllerAs : 'trip'
     })
     .when('/packingList', {
-      templateUrl: '/views/packingList.html',
+      templateUrl: '/views/templates/packingList.html',
       controller: "PackingListController",
       controllerAs : 'list'
+    })
+    .when('/invite', {
+      templateUrl: '/views/templates/invite.html',
+      controller: 'InviteController',
+      controllerAs : 'invite'
     })
     .otherwise({
       redirectTo: 'home'
