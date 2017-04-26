@@ -7,6 +7,34 @@
     background-color: #333333;
     color: #DDDDDD;
 }
+p {
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 24px;
+  text-decoration: none;
+  font-family : 'Lucida Console', Monaco, monospace;
+
+}
+
+li a:hover {
+  background-color: lightslategrey;
+}
+
 
 #entryForm {
     margin-top: 14px;
