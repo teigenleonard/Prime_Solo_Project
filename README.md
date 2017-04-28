@@ -43,5 +43,3 @@ server and not client side.
 
 **NODE MAILER**
 Gmail also always sets authenticated username as the From: email address. So if you authenticate as foo@example.com and set bar@example.com as the from: address, then Gmail reverts this and replaces the sender with the authenticated user.
-
-**Enter Multiple Values SQL**
