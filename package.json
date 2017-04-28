@@ -1,5 +1,5 @@
 {
-  "name": "Prime Solo Project",
+  "name": "prime_solo_project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "nodemon server/app.js",
     "start": "node server/app.js"
   },
-  "author": "Teigen Leonard",
+  "author": "teigen_leonard",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.0",
