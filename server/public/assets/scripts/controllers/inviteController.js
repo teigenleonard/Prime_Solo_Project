@@ -4,9 +4,5 @@ myApp.controller('InviteController', [ 'MailService', function(MailService) {
 
   invite.submitForm = MailService.emailInvite;
 
-  // invite.submitForm = function(info) {
-  //     MailService.emailInvite(info);
-  //     console.log('Info@submitForm: ', info);
-  //
-  // };
+
 }]);
