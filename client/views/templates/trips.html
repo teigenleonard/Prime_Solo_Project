@@ -1,5 +1,8 @@
 
     <div class= "trip" ng-controller= 'TripController as trip'>
-      <h1>Trips view</h1>
-      <p>{{ trip.log }}</p>
+      <form class="addTrip" ng-submit="trip.addTrip( trip.tripObject )">
+        <input type="text" ng-model="trip.tripObject.location" placeholder="LOCATION">
+        <input type="text" ng-model="trip.tripObject.date" placeholder="DATE">
+        <button>Add Trip</button>
+      </form>
     </div>
