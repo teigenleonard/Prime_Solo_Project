@@ -4,6 +4,9 @@ var router = express.Router();
 var path = require('path');
 var pg = require('pg');
 
+var connection = require('../modules/connection');
+
+
 // CALLS
 // Handles POST request with postItem data
 router.post('/', function(req, res, next) {
@@ -11,9 +14,10 @@ router.post('/', function(req, res, next) {
         name: req.body.name,
         quantity: req.body.quantity
     };
-    console.log('newItem: ', newItem);
+    console.log('HERE: newItem: ', newItem);
 
     pg.connect(connection, function(err, db, done) {
+      console.log(db);
         if (err) {
             console.log('Error Connecting: ', err);
             next(err);
@@ -23,8 +27,8 @@ router.post('/', function(req, res, next) {
             function(queryError, result) {
                 done();
                 if (queryError) {
-                    console.log('Error making query.');
-                    res.send(500);
+                    console.log('Error making query : ', queryError );
+                    res.sendStatus(500);
                 } else {
                     res.sendStatus(201);
                 }

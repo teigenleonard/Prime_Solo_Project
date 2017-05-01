@@ -1,4 +1,4 @@
-myApp.controller('TripController', [ 'PackingService', function(PackingService) {
+myApp.controller('TripController', [ 'PackingService','$http', function(PackingService, $http) {
   var trip = this;
     console.log('TripController');
 

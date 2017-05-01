@@ -35,7 +35,7 @@ app.use(passport.session());
 
 // Routes
 app.use('/trips', trip);
-app.use('/items', item)
+app.use('/items', item);
 app.use('/mail', mail);
 app.use('/register', register);
 app.use('/user', user);
