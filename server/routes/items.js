@@ -3,12 +3,30 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
-
 var connection = require('../modules/connection');
 
-
-// CALLS
-// Handles POST request with postItem data
+// GET items
+router.get('/', function(req, res, next) {
+  pg.connect(connection, function(err, db, done) {
+      if (err) {
+          console.log('**Error Connection to Items Table');
+          res.send(500);
+      } else {
+          db.query('SELECT * FROM "items";',
+              function(queryError, result) {
+                  console.log('*Hit Items Query');
+                  done();
+                  if (queryError) {
+                      console.log('**Error with Trips Query**', queryError);
+                      res.sendStatus(500);
+                  } else {
+                      res.send(result.rows);
+                  }
+              });
+      }
+  });
+}); // END GET items
+//  POST request with postItem data
 router.post('/', function(req, res, next) {
     var newItem = {
         name: req.body.name,
@@ -17,7 +35,7 @@ router.post('/', function(req, res, next) {
     console.log('HERE: newItem: ', newItem);
 
     pg.connect(connection, function(err, db, done) {
-      console.log(db);
+        console.log(db);
         if (err) {
             console.log('Error Connecting: ', err);
             next(err);
@@ -27,7 +45,7 @@ router.post('/', function(req, res, next) {
             function(queryError, result) {
                 done();
                 if (queryError) {
-                    console.log('Error making query : ', queryError );
+                    console.log('Error making query : ', queryError);
                     res.sendStatus(500);
                 } else {
                     res.sendStatus(201);

@@ -8,4 +8,5 @@ myApp.controller('TripController', [ 'PackingService', function(PackingService) 
     trip.log = PackingService.log;
     trip.postTrip = PackingService.postTrip;
 
+
 }]);

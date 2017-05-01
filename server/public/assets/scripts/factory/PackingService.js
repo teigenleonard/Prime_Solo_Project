@@ -4,6 +4,9 @@ var log = 'inside factory';
 var tripsObject = {
   tripsArray : []
 };
+var itemsObject = {
+  itemsArray : []
+};
 
 // --------- TRIPS -------------
 function getTrips(){
@@ -27,13 +30,21 @@ function postTrip(trip){
 //-------- END TRIPS ------------
 
 // --------- ITEMS -------------
+function getItems(){
+  console.log('hit getItems');
+  $http.get('/items').then(function(response){
+    itemsObject.itemsArray = response.data;
+    console.log(itemsObject.itemsArray);
+  });
+}
+
 function postItem(item){
   console.log(item);
 
   $http.post('/items', item).then(function(response){
     console.log('hit postItem', item );
     console.log('success: ', response );
-    // @TODO add getItems();
+    getItems();
   });
 } // END postItem
 //-------- END ITEMS ------------
@@ -44,6 +55,7 @@ function postItem(item){
     postItem : postItem,
     getTrips : getTrips,
     tripsObject : tripsObject,
+    getItems : getItems
   };
 
 }]);// END SERVICE

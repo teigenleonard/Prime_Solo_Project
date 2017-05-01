@@ -1,7 +1,11 @@
-<div class="plannedTrips" ng-repeat="trip in tripsObject.tripsArray">
-  {{ trip.location }}
-  {{ trip.date }}
+<div class="row">
+  <div class="plannedTrips" ng-repeat="t in trip.tripsObject.tripsArray">
+    <p>{{ t.location}}</p>
+    <p>{{ t.date }}</p>
+
+  </div>
 </div>
+
 <form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
   <div>
     <input type="text" ng-model="trip.newTrip.location" placeholder="LOCATION">
