@@ -1,8 +1,11 @@
-
-      <form class="postTrip" ng-submit="trip.postTrip( trip.tripObject )">
-        <div class="">
-          <input type="text" ng-model="trip.tripObject.location" placeholder="LOCATION">
-          <input type="text" ng-model="trip.tripObject.date" placeholder="DATE">
-          <button>Add Trip</button>
-        </div>
-      </form>
+<div class="plannedTrips" ng-repeat="trip in getTrips.tripsArray">
+  {{ trip.location }}
+  {{ trip.date }}
+</div>
+<form class="postTrip" ng-submit="trip.postTrip( trip.tripObject )">
+  <div>
+    <input type="text" ng-model="trip.tripObject.location" placeholder="LOCATION">
+    <input type="text" ng-model="trip.tripObject.date" placeholder="DATE">
+    <button>Add Trip</button>
+  </div>
+</form>

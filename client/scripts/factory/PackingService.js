@@ -1,13 +1,17 @@
 myApp.factory( 'PackingService', [ '$http', '$location', function($http, $location) {
   var log = 'inside factory';
 // --------- TRIPS -------------
+function getTrips(){
+  console.log('hit getTrips');
+}
+
 function postTrip(trip){
   console.log(trip);
-  
+
   $http.post('/trips', trip).then(function(response){
     console.log('hit postTrip', trip );
     console.log('success: ', response );
-    // @TODO add getTrips();
+    getTrips();
     $location.path( '/packingList');
   });
 } // END postTrip
@@ -27,7 +31,8 @@ function postItem(item){
   return {
     log : log,
     postTrip : postTrip,
-    postItem : postItem
+    postItem : postItem,
+    getTrips : getTrips
   };
 
 }]);

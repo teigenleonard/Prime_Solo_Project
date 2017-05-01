@@ -10,3 +10,9 @@ CREATE TABLE "trips" (
   "date" date,
   "user_id" varchar(20) not null
 );
+
+CREATE TABLE "items" (
+  "id" serial primary key,
+  "name" varchar(100) not null,
+  "quantity" integer not null
+);

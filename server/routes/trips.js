@@ -3,15 +3,18 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
-
 var connection = require('../modules/connection');
 
-// CALLS
-// Handles POST request with postTrip data
+// GET
+router.get( '/', function( req, res, next) {
+  console.log('trip get');
+});
+// POST request with postTrip data
 router.post('/', function(req, res, next) {
     var newTrip = {
         location : req.body.location,
         date : req.body.date,
+        user_id : 999
     };
     console.log('newTrip', newTrip);
 
@@ -32,6 +35,6 @@ router.post('/', function(req, res, next) {
             });
     });
 
-});
+});// END POST
 //EXPORT
 module.exports = router;
