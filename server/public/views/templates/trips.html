@@ -1,6 +1,6 @@
 
     <div class= "trip" ng-controller= 'TripController as trip'>
-      <form class="addTrip" ng-submit="trip.postTrip( trip.tripObject )">
+      <form class="postTrip" ng-submit="trip.postTrip( trip.tripObject )">
         <input type="text" ng-model="trip.tripObject.location" placeholder="LOCATION">
         <input type="text" ng-model="trip.tripObject.date" placeholder="DATE">
         <button>Add Trip</button>
