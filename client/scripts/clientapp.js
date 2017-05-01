@@ -26,7 +26,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/packingList', {
       templateUrl: '/views/templates/packingList.html',
       controller: "PackingListController",
-      controllerAs : 'list'
+      controllerAs : 'item'
     })
     .when('/invite', {
       templateUrl: '/views/templates/invite.html',

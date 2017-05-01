@@ -5,21 +5,21 @@ var path = require('path');
 var pg = require('pg');
 
 // CALLS
-// Handles POST request with postTrip data
+// Handles POST request with postItem data
 router.post('/', function(req, res, next) {
-    var newTrip = {
-        location: req.body.location,
-        date: req.body.date
+    var newItem = {
+        name: req.body.name,
+        quantity: req.body.quantity
     };
-    console.log('newTrip', newTrip);
+    console.log('newItem: ', newItem);
 
     pg.connect(connection, function(err, db, done) {
         if (err) {
             console.log('Error Connecting: ', err);
             next(err);
         }
-        db.query(' INSERT INTO "trips" ("location", "date" ) ' +
-            ' VALUES ( $1, $2 ); ', [newTrip.location, newTrip.date],
+        db.query(' INSERT INTO "items" ("name", "quantity" ) ' +
+            ' VALUES ( $1, $2 ); ', [newItem.name, newItem.quantity],
             function(queryError, result) {
                 done();
                 if (queryError) {

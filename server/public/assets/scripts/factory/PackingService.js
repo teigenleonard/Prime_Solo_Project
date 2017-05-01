@@ -12,6 +12,7 @@ function postTrip(trip){
 }
 
 
+
   return {
     log : log,
     postTrip : postTrip,

@@ -1,8 +1,10 @@
 
-      <div class= "unassignedItem" ng-controller= 'PackingListController as item'>
-        <form class="postItem" ng-submit="item.postitem( item.itemObject )">
-          <input type="text" ng-model="item.itemObject.name" placeholder="ITEM">
-          <input type="text" ng-model="item.itemObject.quantity" placeholder="QUANTITY">
-          <button>Add item</button>
-        </form>
-      </div>
+<div class= "unassignedItem" ng-controller= 'PackingListController as item'>
+  <div >
+    <form class="postItem" ng-submit="item.postitem( item.itemObject )">
+      <input type="text" ng-model="item.itemObject.name" placeholder="ITEM">
+      <input type="text" ng-model="item.itemObject.quantity" placeholder="QUANTITY">
+      <button>Add item</button>
+    </form>
+  </div>
+</div>
