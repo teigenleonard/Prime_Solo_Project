@@ -3,4 +3,6 @@ myApp.controller('TripController', [ 'PackingService', function(PackingService) 
     console.log('TripController');
 
     trip.log = PackingService.log;
+    trip.postTrip = PackingService.postTrip;
+    console.log(PackingService.postTrip);
 }]);

@@ -8,7 +8,7 @@ var pg = require('pg');
 
 var config = {
   user: 'teigenleonard', //env var: PGUSER
-  database: 'slkr_pckr', //env var: PGDATABASE
+  database: 'slckr_pckr', //env var: PGDATABASE
   password: '', //env var: PGPASSWORD
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -88,13 +88,11 @@ passport.use('local', new localStrategy({
             var user = {};
 
             console.log('here');
-
             // Handle Errors
             if (err) {
               console.log('connection err ', err);
               done(null, user);
             }
-
             release();
             console.log(connectCount);
 

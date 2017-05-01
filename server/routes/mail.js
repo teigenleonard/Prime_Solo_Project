@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
           subject: mailer.subject, // Subject line
           text: mailer.message, // plain text body
           html: '<b>' + mailer.message + '</b>' // html body
-      };
+      };  
 
       transporter.sendMail(mailOptions, function(error, info){
           if (error) {
