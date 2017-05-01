@@ -5,10 +5,26 @@ var path = require('path');
 var pg = require('pg');
 var connection = require('../modules/connection');
 
-// GET
+// GET from trips database
 router.get( '/', function( req, res, next) {
-  console.log('trip get');
-});
+  pg.connect(connection, function( err, db, done) {
+    if(err){
+      console.log('**Error Connecting to Trips Table**');
+      res.send(500);
+    } else {
+      db.query( 'SELECT * FROM "trips";',  function(queryError, result){
+            console.log('**Hit Trips Query**');
+            done();
+            if(queryError){
+                console.log('Error with Trips Query' , queryError);
+                res.sendStatus(500);
+            } else {
+                res.send( result.rows );
+        }
+      });
+    }
+  });
+}); //END GET trips
 // POST request with postTrip data
 router.post('/', function(req, res, next) {
     var newTrip = {
@@ -35,6 +51,6 @@ router.post('/', function(req, res, next) {
             });
     });
 
-});// END POST
+});// END POST trip
 //EXPORT
 module.exports = router;

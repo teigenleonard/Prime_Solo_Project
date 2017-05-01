@@ -1,8 +1,17 @@
 myApp.factory( 'PackingService', [ '$http', '$location', function($http, $location) {
-  var log = 'inside factory';
+//  --------- VARIABLES -------------
+var log = 'inside factory';
+var tripsObject = {
+  tripsArray : []
+};
+
 // --------- TRIPS -------------
 function getTrips(){
   console.log('hit getTrips');
+  $http.get('/trips').then(function(response){
+    tripsObject.tripsArray = response.data;
+    console.log(tripsObject.tripsArray);
+  });
 }
 
 function postTrip(trip){
@@ -28,11 +37,13 @@ function postItem(item){
   });
 } // END postItem
 //-------- END ITEMS ------------
+
   return {
     log : log,
     postTrip : postTrip,
     postItem : postItem,
-    getTrips : getTrips
+    getTrips : getTrips,
+    tripsObject : tripsObject,
   };
 
-}]);
+}]);// END SERVICE
