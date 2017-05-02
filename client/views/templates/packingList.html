@@ -1,3 +1,11 @@
+<div class="row">
+  <div class="unassigned" ng-repeat="i in item.itemsObject.itemsArray">
+    <p>{{ i.name}}</p>
+    <p>{{ i.quantity }}</p>
+
+  </div>
+</div>
+
 
   <div >
     <form class="postItem" ng-submit="item.postItem( item.itemObject )">

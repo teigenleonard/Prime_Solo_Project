@@ -55,7 +55,8 @@ function postItem(item){
     postItem : postItem,
     getTrips : getTrips,
     tripsObject : tripsObject,
-    getItems : getItems
+    getItems : getItems,
+    itemsObject : itemsObject
   };
 
 }]);// END SERVICE

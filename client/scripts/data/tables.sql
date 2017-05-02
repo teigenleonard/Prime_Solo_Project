@@ -14,5 +14,11 @@ CREATE TABLE "trips" (
 CREATE TABLE "items" (
   "id" serial primary key,
   "name" varchar(100) not null,
-  "quantity" integer not null
+  "quantity" integer not null,
+  "user_id" integer
+);
+
+CREATE TABLE "user_trip" (
+  "user_id" integer not null,
+  "trip_id" integer not null
 );
