@@ -1,16 +1,18 @@
-<div class="row">
-  <div class="plannedTrips" ng-repeat="t in trip.tripsObject.tripsArray">
-    <a ng-href="{{ t.id }}">
-      <p>{{ t.location}}</p>
-      <p>{{ t.date }}</p>
-    </a>
+<div class="container">
+  <div class="row" "col-md-2">
+    <div class="plannedTrips" ng-repeat="t in trip.tripsObject.tripsArray">
+        <a ng-click="printClickedTrip( )">
+          <p>{{ t.location}}</p>
+          <p>{{ t.date }}</p>
+        </a>
+    </div>
   </div>
-</div>
 
-<form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
-  <div>
-    <input type="text" ng-model="trip.newTrip.location" placeholder="LOCATION">
-    <input type="text" ng-model="trip.newTrip.date" placeholder="DATE">
-    <button>Add Trip</button>
-  </div>
-</form>
+  <form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
+    <div>
+      <input type="text" ng-model="trip.newTrip.location" placeholder="LOCATION">
+      <input type="text" ng-model="trip.newTrip.date" placeholder="DATE">
+      <button>Add Trip</button>
+    </div>
+  </form>
+</div>

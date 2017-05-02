@@ -5,5 +5,5 @@ myApp.controller('PackingListController', ['PackingService', function(PackingSer
 
   list.postItem = PackingService.postItem;
   list.itemsObject = PackingService.itemsObject;
-
+  console.log(list.itemsObject);
 }]);

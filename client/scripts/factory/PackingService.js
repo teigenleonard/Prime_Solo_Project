@@ -15,7 +15,7 @@ function getTrips(){
     tripsObject.tripsArray = response.data;
     console.log(tripsObject.tripsArray);
   });
-}
+} // END getTrips
 
 function postTrip(trip){
   console.log(trip);
@@ -37,7 +37,7 @@ function getItems(){
     itemsObject.itemsArray = response.data;
     console.log(itemsObject.itemsArray);
   });
-}
+} // END getItems
 
 function postItem(item){
   console.log(item);
