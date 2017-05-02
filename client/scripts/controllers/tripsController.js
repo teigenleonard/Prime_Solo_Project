@@ -3,7 +3,7 @@ myApp.controller('TripController', [ 'PackingService', function(PackingService) 
     console.log('TripController');
     //Print trips to the DOM
     PackingService.getTrips();
-
+    //@TODO put $location here
     trip.tripsObject = PackingService.tripsObject;
     trip.log = PackingService.log;
     trip.postTrip = PackingService.postTrip;

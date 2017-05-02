@@ -1,8 +1,9 @@
 <div class="row">
   <div class="plannedTrips" ng-repeat="t in trip.tripsObject.tripsArray">
-    <p>{{ t.location}}</p>
-    <p>{{ t.date }}</p>
-
+    <a ng-href="{{ t.id }}">
+      <p>{{ t.location}}</p>
+      <p>{{ t.date }}</p>
+    </a>
   </div>
 </div>
 

@@ -21,17 +21,41 @@ router.get('/', function(req, res, next) {
                         res.sendStatus(500);
                     } else {
                         res.send(result.rows);
+                        console.log(result.rows);
                     }
                 });
         }
     });
 }); //END GET trips
+
+// GET for href
+router.get('/:id', function( req, res ){
+  pg.connect(connection, function(err, db, done) {
+      if (err) {
+          console.log('**Error Connecting to Item List Table**');
+          res.send(500);
+      } else {
+          db.query('SELECT * FROM "items";',
+              function(queryError, result) {
+                  console.log('**Hit Item List Query**');
+                  done();
+                  if (queryError) {
+                      console.log('**Error with Item List Query**', queryError);
+                      res.sendStatus(500);
+                  } else {
+                      res.send(result.rows);
+                      console.log(result.rows);
+                  }
+              });
+      }
+  });
+});// END GET for href
+
 // POST request with postTrip data
 router.post('/', function(req, res, next) {
     var newTrip = {
         location: req.body.location,
         date: req.body.date,
-        user_id: 999
     };
     console.log('newTrip', newTrip);
 
@@ -40,7 +64,7 @@ router.post('/', function(req, res, next) {
             console.log('Error Connecting: ', err);
             next(err);
         }
-        db.query(' INSERT INTO "trips" ("location", "date", "user_id" )' + 'VALUES ( $1, $2, $3 ); ', [newTrip.location, newTrip.date, newTrip.user_id],
+        db.query(' INSERT INTO "trips" ("location", "date" )' + 'VALUES ( $1, $2 ); ', [newTrip.location, newTrip.date ],
             function(queryError, result) {
                 done();
                 if (queryError) {

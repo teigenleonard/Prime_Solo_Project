@@ -30,6 +30,7 @@ function postTrip(trip){
 //-------- END TRIPS ------------
 
 // --------- ITEMS -------------
+//@TODO replace path to get to /:id in trips.js
 function getItems(){
   console.log('hit getItems');
   $http.get('/items').then(function(response){

@@ -22,3 +22,8 @@ CREATE TABLE "user_trip" (
   "user_id" integer not null,
   "trip_id" integer not null
 );
+
+SELECT * FROM "trips"
+LEFT JOIN "user_trip" ON trips.id = user_trip.trip_id
+LEFT JOIN "users" ON users.id = user_trip.user_id
+WHERE trips.id = 4;
