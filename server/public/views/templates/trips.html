@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="row" "col-md-2">
-    <div class="plannedTrips" ng-repeat="t in trip.tripsObject.tripsArray">
-        <a ng-click="printClickedTrip( )">
-          <p>{{ t.location}}</p>
-          <p>{{ t.date }}</p>
-        </a>
+
+    <div class="plannedTrips" ng-repeat=" t in trip.tripsObject.tripsArray" >
+        <div class="row" "col-md-2" ng-click="trip.printClickedTrip(t.id) ">
+          <p>{{ t.location }}</p>
+          <p>{{ t.date | date:'medium'}}</p>
+        </div>
+        <button ng-click="trip.deleteTrip( t.id )">Delete</button>
+        <button class="joinButton" ng-show="t.isInvited">JOIN</button>
     </div>
-  </div>
 
   <form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
     <div>

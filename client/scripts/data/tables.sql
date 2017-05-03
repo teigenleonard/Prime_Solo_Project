@@ -15,7 +15,8 @@ CREATE TABLE "items" (
   "id" serial primary key,
   "name" varchar(100) not null,
   "quantity" integer not null,
-  "user_id" integer
+  "user_id" integer,
+  "trip_id" integer not null
 );
 
 CREATE TABLE "user_trip" (
@@ -23,7 +24,14 @@ CREATE TABLE "user_trip" (
   "trip_id" integer not null
 );
 
-SELECT * FROM "trips"
+SELECT *
+  FROM "trips"
 LEFT JOIN "user_trip" ON trips.id = user_trip.trip_id
 LEFT JOIN "users" ON users.id = user_trip.user_id
 WHERE trips.id = 4;
+
+SELECT *
+  FROM "users"
+WHERE "id" NOT IN (SELECT "user_id"
+  FROM "user_trip"
+  WHERE "trip_id" = 999);

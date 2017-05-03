@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" "col-md-2">
-    <div class="unassigned" ng-repeat="i in item.itemsObject.itemsArray">
-      <p>{{ i.name}}</p>
+    <div class="unassigned" ng-repeat=" i in item.itemsObject.itemsArray">
+      <p>{{ i.name }}</p>
       <p>{{ i.quantity }}</p>
     </div>
   </div>
@@ -13,4 +13,5 @@
         <button>Add item</button>
       </form>
     </div>
+
 </div>

@@ -1,7 +1,8 @@
 myApp.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
     $scope.user = {
       username: '',
-      password: ''
+      password: '',
+      user_id : 1
     };
     $scope.message = '';
 
