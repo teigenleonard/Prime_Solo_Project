@@ -1,4 +1,4 @@
-myApp.controller('PackingListController', ['PackingService', function(PackingService) {
+myApp.controller('PackingListController', ['PackingService', '$routeParams', function(PackingService, $routeParams) {
   var list = this;
   console.log('packingListController');
   PackingService.getItems();
@@ -7,3 +7,5 @@ myApp.controller('PackingListController', ['PackingService', function(PackingSer
   list.itemsObject = PackingService.itemsObject;
   console.log(list.itemsObject);
 }]);
+
+// @TODO This is where I left off using $routeParams

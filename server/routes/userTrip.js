@@ -62,7 +62,8 @@ router.delete('/:id', function( req, res ){
           console.log('**Error Connecting to Database to Delete**');
           res.send(500);
       } else {
-          db.query('DELETE FROM "items" WHERE "id" =' + req.params.id + ';',              function(queryError, result) {
+          db.query('DELETE FROM "items" WHERE "id" =' + req.params.id + ';',
+          function(queryError, result) {
                   console.log('**Hit Delete Query**');
                   done();
                   if (queryError) {

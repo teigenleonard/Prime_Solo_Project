@@ -7,16 +7,16 @@ var tripsObject = {
 var itemsObject = {
   itemsArray : []
 };
-var userTripObject = {
-  userTripArray : []
-};
+// var userTripObject = {
+//   userTripArray : []
+// };
 // --------- MISC --------------
-function getUserTrip(){
-  $http.get('/userTrip').then(function(response){
-    userTripObject.userTripArray = response.data;
-    console.log('getUserTrip: ', userTripObject.userTripArray);
-  });
-}
+// function getUserTrip(){
+//   $http.get('/userTrip').then(function(response){
+//     userTripObject.userTripArray = response.data;
+//     console.log('getUserTrip: ', userTripObject.userTripArray);
+//   });
+// }
 //-------- MIC END ------------
 
 // --------- TRIPS -------------
@@ -25,21 +25,21 @@ function getTrips(){
   $http.get('/trips').then(function(response){
     tripsObject.tripsArray = response.data;
     console.log(tripsObject.tripsArray);
-    getUserTrip();
-    for (var i = 0; i < tripsObject.tripsArray.length; i++) {
-      var trip = tripsObject.tripsArray[i];
-      console.log(trip);
-      for (var j = 0; j < userTripObject.userTripArray.length; j++) {
-        var userTrip = userTripObject.userTripArray[j];
-        console.log(userTrip, user.user_id);
-        if (userTrip.trip_id == trip.trip_id &&
-            userTrip.user_id == user.user_id &&
-            userTrip.status == 'invited') {
-              trip.isInvited = true;
-              break;
-            }
-      }
-    }
+    // getUserTrip();
+    // for (var i = 0; i < tripsObject.tripsArray.length; i++) {
+    //   var trip = tripsObject.tripsArray[i];
+    //   console.log(trip);
+    //   for (var j = 0; j < userTripObject.userTripArray.length; j++) {
+    //     var userTrip = userTripObject.userTripArray[j];
+    //     console.log(userTrip, user.user_id);
+    //     if (userTrip.trip_id == trip.trip_id &&
+    //         userTrip.user_id == user.user_id &&
+    //         userTrip.status == 'invited') {
+    //           trip.isInvited = true;
+    //           break;
+    //         }
+    //   }
+    // }
   });
 
 } // END getTrips
