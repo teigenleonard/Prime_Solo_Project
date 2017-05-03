@@ -5,8 +5,60 @@ var path = require('path');
 var pg = require('pg');
 var connection = require('../modules/connection');
 
-// GET from trips database
+// GET all trips that user is INVITED
 router.get('/', function(req, res, next) {
+    pg.connect(connection, function(err, db, done) {
+        if (err) {
+            console.log('**Error Connecting to userTrip Table**');
+            res.send(500);
+        } else {
+            db.query('SELECT * FROM trips JOIN user_trip ' +
+                      'ON trips.id = user_trip.trip ' +
+                      'WHERE user_trip.user_id = $1' +
+                      'AND user_trip.status = "invited";', [req.user.id],
+                function(queryError, result) {
+                    console.log('**Hit userTrip Query**');
+                    done();
+                    if (queryError) {
+                        console.log('**Error with userTrip Query**', queryError);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                        console.log(result.rows);
+                    }
+                });
+        }
+    });
+}); //END GET
+
+// GET all trips that user has JOINED
+router.get('/joined', function(req, res, next) {
+  pg.connect(connection, function(err, db, done) {
+      if (err) {
+          console.log('**Error Connecting to userTrip Table**');
+          res.send(500);
+      } else {
+          db.query('SELECT * FROM trips JOIN user_trip ' +
+                    'ON trips.id = user_trip.trip ' +
+                    'WHERE user_trip.user_id =' + user.id +
+                    'AND user_trip.status = "joined";',
+              function(queryError, result) {
+                  console.log('**Hit userTrip Query**');
+                  done();
+                  if (queryError) {
+                      console.log('**Error with userTrip Query**', queryError);
+                      res.sendStatus(500);
+                  } else {
+                      res.send(result.rows);
+                      console.log(result.rows);
+                  }
+              });
+      }
+  });
+}); //END JOINED GET
+
+// GET all trips that user has CREATED
+router.get('/created', function(req, res, next) {
     pg.connect(connection, function(err, db, done) {
         if (err) {
             console.log('**Error Connecting to userTrip Table**');
@@ -26,56 +78,7 @@ router.get('/', function(req, res, next) {
                 });
         }
     });
-}); //END GET trips
-
-
-// POST request with postTrip data
-router.post('/', function(req, res, next) {
-    var newTrip = {
-        location: req.body.location,
-        date: req.body.date,
-    };
-    console.log('newTrip', newTrip);
-
-    pg.connect(connection, function(err, db, done) {
-        if (err) {
-            console.log('Error Connecting: ', err);
-            next(err);
-        }
-        db.query(' INSERT INTO "trips" ("location", "date" )' + 'VALUES ( $1, $2 ); ', [newTrip.location, newTrip.date ],
-            function(queryError, result) {
-                done();
-                if (queryError) {
-                    console.log('Error making query. : ', queryError);
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(201);
-                }
-            });
-    });
-}); // END POST trip
-
-// DELETE
-router.delete('/:id', function( req, res ){
-  pg.connect(connection, function(err, db, done) {
-      if (err) {
-          console.log('**Error Connecting to Database to Delete**');
-          res.send(500);
-      } else {
-          db.query('DELETE FROM "items" WHERE "id" =' + req.params.id + ';',
-          function(queryError, result) {
-                  console.log('**Hit Delete Query**');
-                  done();
-                  if (queryError) {
-                      console.log('**Error with Item List Delete**', queryError);
-                      res.sendStatus(500);
-                  } else {
-                      res.sendStatus(201);
-                  }
-              });
-      }
-  });
-});// END DELETE
+}); //END CREATED GET
 
 //EXPORT
 module.exports = router;
