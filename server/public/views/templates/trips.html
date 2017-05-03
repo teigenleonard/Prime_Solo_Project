@@ -1,8 +1,19 @@
+<div class="container">
 
-    <div class= "trip" ng-controller= 'TripController as trip'>
-      <form class="addTrip" ng-submit="trip.postTrip( trip.tripObject )">
-        <input type="text" ng-model="trip.tripObject.location" placeholder="LOCATION">
-        <input type="text" ng-model="trip.tripObject.date" placeholder="DATE">
-        <button>Add Trip</button>
-      </form>
+    <div class="plannedTrips" ng-repeat=" t in trip.tripsObject.tripsArray" >
+        <div class="row" "col-md-2" ng-click="trip.printClickedTrip(t.id) ">
+          <p>{{ t.location }}</p>
+          <p>{{ t.date | date:'medium'}}</p>
+        </div>
+        <button ng-click="trip.deleteTrip( t.id )">Delete</button>
+        <button class="joinButton" ng-show="t.isInvited">JOIN</button>
     </div>
+
+  <form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
+    <div>
+      <input type="text" ng-model="trip.newTrip.location" placeholder="LOCATION">
+      <input type="text" ng-model="trip.newTrip.date" placeholder="DATE">
+      <button>Add Trip</button>
+    </div>
+  </form>
+</div>

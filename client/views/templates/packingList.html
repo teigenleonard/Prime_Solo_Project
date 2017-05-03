@@ -1,4 +1,17 @@
-
-    <div class="list" ng-controller= "PackingListController as list">
-        <h1>Packing List View</h1>
+<div class="container">
+  <div class="row" "col-md-2">
+    <div class="unassigned" ng-repeat=" i in item.itemsObject.itemsArray">
+      <p>{{ i.name }}</p>
+      <p>{{ i.quantity }}</p>
     </div>
+  </div>
+
+    <div >
+      <form class="postItem" ng-submit="item.postItem( item.itemObject )">
+        <input type="text" ng-model="item.itemObject.name" placeholder="ITEM">
+        <input type="text" ng-model="item.itemObject.quantity" placeholder="QUANTITY">
+        <button>Add item</button>
+      </form>
+    </div>
+
+</div>

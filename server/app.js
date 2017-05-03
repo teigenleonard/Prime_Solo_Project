@@ -12,6 +12,8 @@ var user = require('./routes/user');
 var register = require('./routes/register');
 var mail = require('./routes/mail');
 var trip = require('./routes/trips'); // do i need to add .js here?
+var item = require('./routes/items');
+var userTrip = require('./routes/userTrip');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -33,7 +35,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/userTrip', userTrip);
 app.use('/trips', trip);
+app.use('/items', item);
 app.use('/mail', mail);
 app.use('/register', register);
 app.use('/user', user);

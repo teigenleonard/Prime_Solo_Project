@@ -96,7 +96,7 @@ passport.use('local', new localStrategy({
             release();
             console.log(connectCount);
 
-            if(result.rows[0] != undefined) {
+            if(result.rows[0] !== undefined) {
               user = result.rows[0];
               console.log('User obj', user);
               // Hash and compare
