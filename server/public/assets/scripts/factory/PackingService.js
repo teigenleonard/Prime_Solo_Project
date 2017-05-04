@@ -53,13 +53,13 @@ function deleteTrip( id ){
 
 // ---------------------ITEMS ----------------
 //@TODO replace path to get to /:id in trips.js
-function getItems(){
+function getItems(tripId){
   console.log('hit getItems');
   $http({
     method : 'GET',
     url : '/items',
     params : {
-
+      tripId : tripId
     }
   }).then(function(response){
     itemsObject.itemsArray = response.data;
