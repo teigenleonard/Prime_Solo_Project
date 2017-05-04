@@ -4,16 +4,22 @@ myApp.controller('TripController', [ 'PackingService','$location', function(Pack
     //Print trips to the DOM
     PackingService.getTrips();
 
-    trip.tripsObject = PackingService.tripsObject;
+    trip.createdTripObject = PackingService.createdTripObject;
+    trip.invtedTripObject = PackingService.invtedTripObject;
+    trip.joinedTripObject = PackingService.joinedTripObject;
     trip.log = PackingService.log;
     trip.postTrip = PackingService.postTrip;
     trip.deleteTrip = PackingService.deleteTrip;
 
+    //TODO replace this with routerParams
+
     trip.printClickedTrip = function(id){
       console.log(id);
-      PackingService.tripsObject = trip.tripsObject.id;
-      console.log(PackingService.tripsObject);
+      console.log(trip.createdTripObject);
+      PackingService.createdTripObject = trip.createdTripObject.id;
+      console.log(PackingService.createdTripsObject);
       $location.path('/packingList');
     };
+
 
 }]);

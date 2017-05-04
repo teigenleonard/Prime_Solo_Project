@@ -1,13 +1,30 @@
 <div class="container">
-
-    <div class="plannedTrips" ng-repeat=" t in trip.tripsObject.tripsArray" >
-        <div class="row" "col-md-2" ng-click="trip.printClickedTrip(t.id) ">
+  <div class="row">
+    <h2>Trip Invitations</h2>
+    <div class="invitedTrips" ng-repeat=" t in trip.invtedTripObject.invitedTripArray" >
+        <div class="col-sm-2" ng-click="trip.printClickedTrip(t.id) ">
           <p>{{ t.location }}</p>
-          <p>{{ t.date | date:'medium'}}</p>
+          <p>{{ t.date | date:'mediumDate'}}</p>
+          <button class="joinButton" ng-show="t.status">JOIN</button>
         </div>
-        <button ng-click="trip.deleteTrip( t.id )">Delete</button>
-        <button class="joinButton" ng-show="t.isInvited">JOIN</button>
     </div>
+  </div>
+  <div class="row">
+    <h2>Planned   Trips</h2>
+    <div class="joinedTrips" ng-repeat=" t in trip.joinedTripObject.joinedTripArray" >
+        <div class="col-md-2" ng-click="trip.printClickedTrip(t.id) ">
+          <p>{{ t.location }}</p>
+          <p>{{ t.date | date:'mediumDate'}}</p>
+        </div>
+    </div>
+  </div>
+  <div class="plannedTrips" ng-repeat=" t in trip.createdTripObject.createdTripArray" >
+      <div class="row" "col-md-2" ng-click="trip.printClickedTrip(t.id) ">
+        <p>{{ t.location }}</p>
+        <p>{{ t.date | date:'mediumDate'}}</p>
+      </div>
+      <button ng-click="trip.deleteTrip( t.id )">Delete</button>
+  </div>
 
   <form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
     <div>

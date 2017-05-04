@@ -1,49 +1,36 @@
 myApp.factory( 'PackingService', [ '$http', '$location', function($http, $location) {
 //  --------- VARIABLES -------------
 var log = 'inside factory';
-var tripsObject = {
-  tripsArray : []
-};
+
 var itemsObject = {
   itemsArray : []
 };
-// var userTripObject = {
-//   userTripArray : []
-// };
-// --------- MISC --------------
-// function getUserTrip(){
-//   $http.get('/userTrip').then(function(response){
-//     userTripObject.userTripArray = response.data;
-//     console.log('getUserTrip: ', userTripObject.userTripArray);
-//   });
-// }
-//-------- MIC END ------------
+var invtedTripObject = {
+  invitedTripArray : []
+};
+var joinedTripObject = {
+  joinedTripArray : []
+};
+var createdTripObject = {
+  createdTripArray : []
+};
 
-// --------- TRIPS -------------
+// -------------------- TRIPS -------------------
 function getTrips(){
   console.log('hit getTrips');
   $http.get('/trips').then(function(response){
-    tripsObject.tripsArray = response.data;
-    console.log(tripsObject.tripsArray);
-    // getUserTrip();
-    // for (var i = 0; i < tripsObject.tripsArray.length; i++) {
-    //   var trip = tripsObject.tripsArray[i];
-    //   console.log(trip);
-    //   for (var j = 0; j < userTripObject.userTripArray.length; j++) {
-    //     var userTrip = userTripObject.userTripArray[j];
-    //     console.log(userTrip, user.user_id);
-    //     if (userTrip.trip_id == trip.trip_id &&
-    //         userTrip.user_id == user.user_id &&
-    //         userTrip.status == 'invited') {
-    //           trip.isInvited = true;
-    //           break;
-    //         }
-    //   }
-    // }
+    createdTripObject.createdTripArray = response.data;
+    console.log(createdTripObject.createdTripArray);
   });
-
+  $http.get('/userTrip').then(function(response){
+    invtedTripObject.invitedTripArray = response.data;
+    console.log('getUserTrip: ', invtedTripObject.invitedTripArray);
+  });
+  $http.get('/userTrip/joined').then(function(response){
+    joinedTripObject.joinedTripArray = response.data;
+    console.log('getUserTrip: ', joinedTripObject.joinedTripArray);
+  });
 } // END getTrips
-
 
 function postTrip(trip){
   console.log(trip);
@@ -56,19 +43,25 @@ function postTrip(trip){
   });
 } // END postTrip
 
-function deleteTrip( id){
+function deleteTrip( id ){
   console.log( 'hit deleteTrip for:', id );
   // $http.delete('/:id', id).then(function(response){
     getTrips();
   // });
 }
-//-------- END TRIPS ------------
+//------------------- END TRIPS ------------------
 
-// --------- ITEMS -------------
+// ---------------------ITEMS ----------------
 //@TODO replace path to get to /:id in trips.js
 function getItems(){
   console.log('hit getItems');
-  $http.get('/items').then(function(response){
+  $http({
+    method : 'GET',
+    url : '/items',
+    params : {
+
+    }
+  }).then(function(response){
     itemsObject.itemsArray = response.data;
     console.log(itemsObject.itemsArray);
   });
@@ -83,17 +76,19 @@ function postItem(item){
     getItems();
   });
 } // END postItem
-//-------- END ITEMS ------------
+//------------------ END ITEMS ------------
 
   return {
     log : log,
     postTrip : postTrip,
     postItem : postItem,
     getTrips : getTrips,
-    tripsObject : tripsObject,
+    createdTripObject : createdTripObject,
+    invtedTripObject : invtedTripObject,
+    joinedTripObject : joinedTripObject,
     getItems : getItems,
     itemsObject : itemsObject,
     deleteTrip : deleteTrip
   };
 
-}]);// END SERVICE
+}]);// ----------------  END SERVICE -----------

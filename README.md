@@ -41,5 +41,23 @@ have it hosted on heroku so they don't have to download file to set it up
 if creating multiple accounts, make sure all permission checks are on
 server and not client side.
 
-**NODE MAILER**
+**FOR GMAIL USERS USING NODE MAILER**
 Gmail also always sets authenticated username as the From: email address. So if you authenticate as foo@example.com and set bar@example.com as the from: address, then Gmail reverts this and replaces the sender with the authenticated user.
+
+***CODE DUMP***
+// for loops to access which users have joined which trips by client side code
+// getUserTrip();
+// for (var i = 0; i < tripsObject.tripsArray.length; i++) {
+//   var trip = tripsObject.tripsArray[i];
+//   console.log(trip);
+//   for (var j = 0; j < userTripObject.userTripArray.length; j++) {
+//     var userTrip = userTripObject.userTripArray[j];
+//     console.log(userTrip, user.user_id);
+//     if (userTrip.trip_id == trip.trip_id &&
+//         userTrip.user_id == user.user_id &&
+//         userTrip.status == 'invited') {
+//           trip.isInvited = true;
+//           break;
+//         }
+//   }
+// }
