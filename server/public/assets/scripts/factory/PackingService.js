@@ -5,7 +5,7 @@ var log = 'inside factory';
 var itemsObject = {
   itemsArray : []
 };
-var invtedTripObject = {
+var invitedTripObject = {
   invitedTripArray : []
 };
 var joinedTripObject = {
@@ -15,20 +15,24 @@ var createdTripObject = {
   createdTripArray : []
 };
 
+var selectedTrip = {
+  id : 999
+};
+
 // -------------------- TRIPS -------------------
 function getTrips(){
   console.log('hit getTrips');
   $http.get('/trips').then(function(response){
     createdTripObject.createdTripArray = response.data;
-    console.log(createdTripObject.createdTripArray);
+    console.log('Created Trips ',createdTripObject.createdTripArray);
   });
   $http.get('/userTrip').then(function(response){
-    invtedTripObject.invitedTripArray = response.data;
-    console.log('getUserTrip: ', invtedTripObject.invitedTripArray);
+    invitedTripObject.invitedTripArray = response.data;
+    console.log('Invited Trip: ', invitedTripObject.invitedTripArray);
   });
   $http.get('/userTrip/joined').then(function(response){
     joinedTripObject.joinedTripArray = response.data;
-    console.log('getUserTrip: ', joinedTripObject.joinedTripArray);
+    console.log('Joined Trip: ', joinedTripObject.joinedTripArray);
   });
 } // END getTrips
 
@@ -43,11 +47,28 @@ function postTrip(trip){
   });
 } // END postTrip
 
+function joinTrip( id ){
+  console.log( 'hit joinTrip for:', id );
+  $http.put('/' + id).then(function(response){
+    getTrips();
+  });
+}
+
 function deleteTrip( id ){
   console.log( 'hit deleteTrip for:', id );
-  // $http.delete('/:id', id).then(function(response){
-    getTrips();
-  // });
+  $http({
+      method: 'DELETE',
+      url: '/trips/' + id,
+      headers: {
+          'Content-type': 'application/json;charset=utf-8'
+      }
+  })
+  .then(function(response) {
+      console.log(response.data);
+  }, function(rejection) {
+      console.log(rejection.data);
+  });
+  getTrips();
 }
 //------------------- END TRIPS ------------------
 
@@ -69,7 +90,6 @@ function getItems(tripId){
 
 function postItem(item){
   console.log(item);
-
   $http.post('/items', item).then(function(response){
     console.log('hit postItem', item );
     console.log('success: ', response );
@@ -84,11 +104,13 @@ function postItem(item){
     postItem : postItem,
     getTrips : getTrips,
     createdTripObject : createdTripObject,
-    invtedTripObject : invtedTripObject,
+    invitedTripObject : invitedTripObject,
     joinedTripObject : joinedTripObject,
     getItems : getItems,
     itemsObject : itemsObject,
-    deleteTrip : deleteTrip
+    joinTrip : joinTrip,
+    deleteTrip : deleteTrip,
+    selectedTrip : selectedTrip
   };
 
 }]);// ----------------  END SERVICE -----------

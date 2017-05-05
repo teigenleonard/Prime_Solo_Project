@@ -28,37 +28,7 @@ router.get('/', function(req, res, next) {
         }
     });
 }); //END GET
-// JOIN TRIP POST request with joinTrip data
-router.post('/', function(req, res, next) {
-  if (req.isAuthenticated()) {
-    var joinedTrip = {
-        tripId: req.body.id,
-        status: req.body.status,
-    };
-    console.log('newTrip', newTrip);
 
-    pg.connect(connection, function(err, db, done) {
-        if (err) {
-            console.log('Error Connecting: ', err);
-            next(err);
-        }
-        db.query( 'INSERT INTO "trips" ("user_id", "trip_id", "status" )' +
-                  'VALUES ( $1, $2, $3 ); ',
-                  [req.user.id, newTrip.location, newTrip.date, ],
-            function(queryError, result) {
-                done();
-                if (queryError) {
-                    console.log('Error making query. : ', queryError);
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(201);
-                }
-            });
-    });
-  } else {
-      res.sendStatus(401);
-  }
-}); // END NEWTRIP POST
 // GET all trips that user has JOINED
 router.get('/joined', function(req, res, next) {
   console.log(req.user);
@@ -82,6 +52,28 @@ router.get('/joined', function(req, res, next) {
       }
   });
 }); //END JOINED GET
+
+// JOIN TRIP POST request with joinTrip data
+router.put('/:id', function(req, res, next) {
+    pg.connect(connection, function(err, db, done) {
+        if (err) {
+            console.log('Error Connecting: ', err);
+            next(err);
+        }
+        db.query( 'UPDATE "user_trip" SET "status" = \'joined\' WHERE "user_id" = ($1) AND "trip_id" = ($2);',
+                  [req.user.id, req.params.id ],
+            function(queryError, result) {
+                done();
+                if (queryError) {
+                    console.log('Error making query. : ', queryError);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            });
+    });
+}); // END JOIN TRIP POST
+
 
 
 //EXPORT

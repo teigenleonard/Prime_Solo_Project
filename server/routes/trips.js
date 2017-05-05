@@ -67,24 +67,26 @@ router.get('/', function(req, res, next) {
 
 // DELETE
 router.delete('/:id', function(req, res) {
-    pg.connect(connection, function(err, db, done) {
-        if (err) {
-            console.log('**Error Connecting to Database to Delete**');
-            res.send(500);
-        } else {
-            db.query('DELETE FROM "trips" WHERE "id" =' + req.params.id + ';',
-            function(queryError, result) {
-                console.log('**Hit Delete Query**');
-                done();
-                if (queryError) {
-                    console.log('**Error with Item List Delete**', queryError);
-                    res.sendStatus(500);
-                } else {
-                    res.sendStatus(201);
-                }
-            });
-        }
-    });
+  console.log("~~~~~~~~~~~" + req.params.id);
+    // pg.connect(connection, function(err, db, done) {
+    //     if (err) {
+    //         console.log('**Error Connecting to Database to Delete**');
+    //         res.send(500);
+    //     } else {
+    //         db.query('DELETE FROM "trips" WHERE "id" =' + req.body.id + ';',
+    //         function(queryError, result) {
+    //             console.log('**Hit Delete Query**');
+    //             done();
+    //             if (queryError) {
+    //                 console.log('**Error with Item List Delete**', queryError);
+    //                 res.sendStatus(500);
+    //             } else {
+    //                 res.sendStatus(201);
+    //             }
+    //         });
+    //     }
+    // });
+    res.send("Yerp");
 }); // END DELETE
 
 //EXPORT

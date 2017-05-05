@@ -7,12 +7,14 @@ var connection = require('../modules/connection');
 
 // GET items
 router.get('/', function(req, res, next) {
+  console.log('items params', req.query);
   pg.connect(connection, function(err, db, done) {
       if (err) {
           console.log('**Error Connection to Items Table');
           res.send(500);
       } else {
-          db.query('SELECT * FROM "items";',
+          db.query('SELECT * FROM "items" LEFT JOIN "users" ON users.id = items.user_id WHERE items.trip_id =$1 ORDER BY username ;',
+              [req.query.tripId],
               function(queryError, result) {
                   console.log('*Hit Items Query');
                   done();

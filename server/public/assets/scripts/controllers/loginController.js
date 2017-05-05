@@ -16,7 +16,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', function($s
             console.log('success: ', response.data);
             // location works with SPA (ng-route)
             console.log('redirecting to user page');
-            $location.path('/user');
+            $location.path('/trips');
           } else {
             console.log('failure: ', response);
             $scope.message = "Wrong!!";
