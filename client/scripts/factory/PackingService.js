@@ -56,19 +56,19 @@ function joinTrip( id ){
 
 function deleteTrip( id ){
   console.log( 'hit deleteTrip for:', id );
-  $http({
-      method: 'DELETE',
-      url: '/trips/' + id,
-      headers: {
-          'Content-type': 'application/json;charset=utf-8'
-      }
-  })
-  .then(function(response) {
-      console.log(response.data);
-  }, function(rejection) {
-      console.log(rejection.data);
-  });
-  getTrips();
+//   $http({
+//       method: 'DELETE',
+//       url: '/trips/' + id,
+//       headers: {
+//           'Content-type': 'application/json;charset=utf-8'
+//       }
+//   })
+//   .then(function(response) {
+//       console.log(response.data);
+//   }, function(rejection) {
+//       console.log(rejection.data);
+//   });
+//   getTrips();
 }
 //------------------- END TRIPS ------------------
 
