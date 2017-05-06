@@ -54,14 +54,19 @@ router.get('/joined', function(req, res, next) {
 }); //END JOINED GET
 
 // JOIN TRIP POST request with joinTrip data
-router.put('/:id', function(req, res, next) {
+router.put('/', function(req, res, next) {
+    console.log('hit join put!', req.body);
+    var join = {
+      tripId : req.body.tripId,
+      userId : req.body.userId
+    };
     pg.connect(connection, function(err, db, done) {
         if (err) {
             console.log('Error Connecting: ', err);
             next(err);
         }
         db.query( 'UPDATE "user_trip" SET "status" = \'joined\' WHERE "user_id" = ($1) AND "trip_id" = ($2);',
-                  [req.user.id, req.params.id ],
+                  [ join.userId, join.tripId ],
             function(queryError, result) {
                 done();
                 if (queryError) {

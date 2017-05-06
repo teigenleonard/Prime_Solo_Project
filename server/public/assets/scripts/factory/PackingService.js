@@ -47,12 +47,19 @@ function postTrip(trip){
   });
 } // END postTrip
 
-function joinTrip( id ){
-  console.log( 'hit joinTrip for:', id );
-  $http.put('/' + id).then(function(response){
-    getTrips();
+
+function joinTrip(join){
+  console.log( 'hit joinTrip for:', join );
+  var ids = {
+    tripId : join.trip_id,
+    userId : join.user_id
+  };
+  $http.put('/userTrip', ids ).then(function(response){
+  //   getTrips();
   });
 }
+
+
 
 function deleteTrip( id ){
   console.log( 'hit deleteTrip for:', id );
@@ -84,7 +91,7 @@ function getItems(tripId){
     }
   }).then(function(response){
     itemsObject.itemsArray = response.data;
-    console.log(itemsObject.itemsArray);
+    console.log('items array: ', itemsObject.itemsArray);
   });
 } // END getItems
 
