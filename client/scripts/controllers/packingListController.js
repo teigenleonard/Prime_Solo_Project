@@ -7,6 +7,7 @@ myApp.controller('PackingListController', ['PackingService', function(PackingSer
 
   list.itemsObject = PackingService.itemsObject;
   console.log(list.itemsObject);
+  console.log('here lies user id: ', user.user_id);
 
   console.log("Here you go: ", PackingService.selectedTrip);
 
