@@ -12,6 +12,11 @@
   display: inline-block;
 
 }
+
+.unassigned{
+  background-color: lightblue;
+}
+
 ul {
     list-style-type: none;
     margin: 0;

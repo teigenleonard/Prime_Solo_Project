@@ -1,14 +1,18 @@
 <div class= "container">
-  <div >
-    <form class="postItem" ng-submit="list.postItem( list.newItem )">
-      <input type="text" ng-model="list.newItem.name" placeholder="ITEM">
-      <input type="text" ng-model="list.newItem.quantity" placeholder="QUANTITY">
-      <button>Add list</button>
-    </form>
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <form class="postItem" ng-submit="list.postItem( list.newItem )">
+        <input type="text" ng-model="list.newItem.name" placeholder="i t e m">
+        <input type="text" ng-model="list.newItem.quantity" placeholder="q u a n t i t y">
+        <button>Add Item</button>
+      </form>
+    </div>
   </div>
-  <div class="row" "col-md-2">
-    <div class="unassigned" ng-repeat=" i in list.itemsObject.itemsArray">
-      <p>{{ i.name }} {{ i.quantity }}</p>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+      <div class="unassigned" ng-repeat=" i in list.itemsObject.itemsArray">
+        <p ng-click="list.claimItem()">{{ i.name }} {{ i.quantity }}</p>
+      </div>
     </div>
   </div>
 </div>

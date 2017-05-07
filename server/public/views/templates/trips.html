@@ -12,8 +12,7 @@
     <h2>Trip Invitations</h2>
     <div class="invitedTrips" ng-repeat=" t in trip.invitedTripObject.invitedTripArray" >
         <div class="col-sm-2" ng-click="trip.printClickedTrip(t.id) ">
-          <p>{{ t.location }}</p>
-          <p>{{ t.date | date:'mediumDate'}}</p>
+          <p>{{ t.location }} {{ t.date | date:'mediumDate'}}</p>
           <button class="joinButton" ng-click="trip.joinTrip(t)">Join</button>
         </div>
     </div>
@@ -22,15 +21,13 @@
     <h2>Planned   Trips</h2>
     <div class="joinedTrips" ng-repeat=" t in trip.joinedTripObject.joinedTripArray" >
         <div class="col-md-2" ng-click="trip.printClickedTrip(t.id) ">
-          <p>{{ t.location }}</p>
-          <p>{{ t.date | date:'mediumDate'}}</p>
+          <p>{{ t.location }} {{ t.date | date:'mediumDate'}}</p>
         </div>
     </div>
   </div>
   <div class="plannedTrips" ng-repeat=" t in trip.createdTripObject.createdTripArray" >
       <div class="row" "col-md-2" ng-click="trip.printClickedTrip(t.id) ">
-        <p>{{ t.location }}</p>
-        <p>{{ t.date | date:'mediumDate'}}</p>
+        <p>{{ t.location }} {{ t.date | date:'mediumDate'}}</p>
       </div>
       <button ng-click="trip.inviteTrip( t.id )">Invite</button>
       <button ng-click="trip.deleteTrip( t.id )">Delete</button>
