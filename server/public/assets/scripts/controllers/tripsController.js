@@ -1,6 +1,6 @@
-myApp.controller('TripController', [ 'MailService','PackingService','$location', function(MailService, PackingService, $location) {
+myApp.controller('TripController', [ 'LoginService', 'MailService','PackingService','$location', function(LoginService, MailService, PackingService, $location) {
   var trip = this;
-    console.log('TripController');
+    console.log('TripController', LoginService.user);
     //Print trips to the DOM
     PackingService.getTrips();
 
