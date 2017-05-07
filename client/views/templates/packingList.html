@@ -1,16 +1,14 @@
 <div class= "container">
+  <div >
+    <form class="postItem" ng-submit="list.postItem( list.newItem )">
+      <input type="text" ng-model="list.newItem.name" placeholder="ITEM">
+      <input type="text" ng-model="list.newItem.quantity" placeholder="QUANTITY">
+      <button>Add list</button>
+    </form>
+  </div>
   <div class="row" "col-md-2">
-    <div class="unassigned" ng-repeat=" i in item.itemsObject.itemsArray">
-      <p>{{ i.name }}</p>
-      <p>{{ i.quantity }}</p>
+    <div class="unassigned" ng-repeat=" i in list.itemsObject.itemsArray">
+      <p>{{ i.name }} {{ i.quantity }}</p>
     </div>
   </div>
-    <div >
-      <form class="postItem" ng-submit="item.postItem( item.itemObject )">
-        <input type="text" ng-model="item.itemObject.name" placeholder="ITEM">
-        <input type="text" ng-model="item.itemObject.quantity" placeholder="QUANTITY">
-        <button>Add item</button>
-      </form>
-    </div>
-
 </div>

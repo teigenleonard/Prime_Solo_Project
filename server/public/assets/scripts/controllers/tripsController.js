@@ -21,7 +21,7 @@ myApp.controller('TripController', [ 'MailService','PackingService','$location',
 
     //TODO replace this with routerParams
     trip.printClickedTrip = function(id){
-      PackingService.selectedTrip = id;
+      PackingService.selectedTrip.id = id;
       console.log("Boom, trip! " , PackingService.selectedTrip);
       $location.path('/packingList');
     };
