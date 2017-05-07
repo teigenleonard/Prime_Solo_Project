@@ -14,11 +14,12 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
   var createdTripObject = {
     createdTripArray : []
   };
-
   var selectedTrip = {
     id : ''
   };
-
+  var selectedItem = {
+    user_id : ''
+  };
   // -------------------- TRIPS -------------------
   function getTrips(){
     // console.log('hit getTrips');
@@ -92,11 +93,11 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     });
   } // END getItems
 
-  function postItem(dog){
+  function postItem(addItem){
     var item = {
-      name : dog.name,
-      quantity : dog.quantity,
-      trip_id : dog.trip_id
+      name : addItem.name,
+      quantity : addItem.quantity,
+      trip_id : addItem.trip_id
     };
     console.log('inside factory: ', item);
     $http.post('/items', item).then(function(response){
@@ -104,7 +105,22 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
       // console.log('success: ', response );
     });
     getItems(item.trip_id);
+  } // END postItem
 
+  function claimItem(claim){
+    // console.log('inside factory: ', claim);
+    var item = {
+      name : claim.name,
+      quantity : claim.quantity,
+      trip_id : claim.trip_id,
+      user_id : claim.user_id
+    };
+    console.log('inside factory: ', item);
+    // $http.post('/items', item).then(function(response){
+    //   // console.log('hit postItem', item );
+    //   // console.log('success: ', response );
+    // });
+    // getItems(item.trip_id);
   } // END postItem
   //------------------ END ITEMS ------------
 
@@ -114,14 +130,16 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     postTrip : postTrip,
     postItem : postItem,
     getTrips : getTrips,
+    getItems : getItems,
     createdTripObject : createdTripObject,
     invitedTripObject : invitedTripObject,
     joinedTripObject : joinedTripObject,
-    getItems : getItems,
     itemsObject : itemsObject,
+    selectedTrip : selectedTrip,
+    selectedItem : selectedItem,
     joinTrip : joinTrip,
     deleteTrip : deleteTrip,
-    selectedTrip : selectedTrip
+    claimItem : claimItem
   };
 
 }]);// ----------------  END SERVICE -----------
