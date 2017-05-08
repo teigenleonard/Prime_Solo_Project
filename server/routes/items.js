@@ -64,16 +64,16 @@ router.post('/claim', function(req, res, next) {
     trip_id : req.body.trip_id,
     user_id : req.body.user_id
   };
-  console.log('HERE: newItem: ', newItem);
-
+  console.log('*******HERE: claimItem: ', claimItem);
   pg.connect(connection, function(err, db, done) {
     console.log(db);
     if (err) {
       console.log('Error Connecting: ', err);
       next(err);
     }
-    db.query(' INSERT INTO "items" ("name", "quantity", "trip_id" ) ' +
-    ' VALUES ( $1, $2, $3 ); ', [newItem.name, newItem.quantity, newItem.trip_id],
+    db.query(' UPDATE "items" SET "user_id" = ( $1 ) ' +
+    'WHERE "name" = ( $2 ) AND "trip_id" = ( $3 ); ',
+    [claimItem.user_id, claimItem.name, claimItem.trip_id],
     function(queryError, result) {
       done();
       if (queryError) {

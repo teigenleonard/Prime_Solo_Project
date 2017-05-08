@@ -14,10 +14,10 @@ myApp.controller('PackingListController', ['PackingService', 'LoginService', fun
         var item = {
           name : singleItem.name,
           quantity : singleItem.quantity,
+          trip_id : PackingService.selectedTrip.id,
           user_id : LoginService.user.user_id
         };
-        console.log("Boom, " , item);
-        PackingService.getItems(PackingService.selectedTrip.id);
+      PackingService.claimItem(item);
       };
     // console.log("Here you go: ", PackingService.selectedTrip);
     if(PackingService.selectedTrip.id !== 999){

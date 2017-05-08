@@ -107,14 +107,8 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     getItems(item.trip_id);
   } // END postItem
 
-  function claimItem(claim){
-    // console.log('inside factory: ', claim);
-    var item = {
-      name : claim.name,
-      quantity : claim.quantity,
-      trip_id : claim.trip_id,
-      user_id : claim.user_id
-    };
+  function claimItem(item){
+    // var item assigned in PackingListController
     console.log('inside factory: ', item);
     $http.post('/items/claim', item).then(function(response){
       console.log('hit postItem', item );
