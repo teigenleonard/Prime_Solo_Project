@@ -4,21 +4,24 @@ myApp.controller('PackingListController', ['PackingService', 'LoginService', fun
     console.log('here lies user id: ', LoginService.user.user_id);
     console.log('newItem when controller loads: ', list.newItem);
 
-    list.postItem = PackingService.postItem;
+    list.postItem = function(newItem) {
+      PackingService.postItem(newItem);
+      list.newItem.name = '';
+      list.newItem.quantity = '';
+    };
     list.itemsObject = PackingService.itemsObject;
-    list.claimItem =  function(id){
-        PackingService.selectedTrip.id = id;
-        console.log("Boom, trip! " , PackingService.selectedTrip);
-        $location.path('/packingList');
+    list.claimItem =  function(singleItem){
+        var item = {
+          name : singleItem.name,
+          quantity : singleItem.quantity,
+          user_id : LoginService.user.user_id
+        };
+        console.log("Boom, " , item);
+        PackingService.getItems(PackingService.selectedTrip.id);
       };
-  // console.log("Here you go: ", PackingService.selectedTrip);
+    // console.log("Here you go: ", PackingService.selectedTrip);
     if(PackingService.selectedTrip.id !== 999){
     PackingService.getItems(PackingService.selectedTrip.id);
     }
-    console.log('clearItem?');
-    list.newItem = {
-        name: '',
-        quantity: '',
-        trip_id: PackingService.selectedTrip.id,
-    };
+
 }]);

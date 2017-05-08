@@ -49,7 +49,7 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
 
 
   function joinTrip(join){
-    // console.log( 'hit joinTrip for:', join );
+    console.log( 'hit joinTrip for:', join );
     var ids = {
       tripId : join.trip_id,
       userId : join.user_id
@@ -97,7 +97,7 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     var item = {
       name : addItem.name,
       quantity : addItem.quantity,
-      trip_id : addItem.trip_id
+      trip_id : selectedTrip.id
     };
     console.log('inside factory: ', item);
     $http.post('/items', item).then(function(response){
@@ -116,11 +116,11 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
       user_id : claim.user_id
     };
     console.log('inside factory: ', item);
-    // $http.post('/items', item).then(function(response){
-    //   // console.log('hit postItem', item );
-    //   // console.log('success: ', response );
-    // });
-    // getItems(item.trip_id);
+    $http.post('/items/claim', item).then(function(response){
+      console.log('hit postItem', item );
+      console.log('success: ', response );
+    });
+    getItems(item.trip_id);
   } // END postItem
   //------------------ END ITEMS ------------
 
