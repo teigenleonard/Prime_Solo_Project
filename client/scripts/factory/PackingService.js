@@ -29,7 +29,7 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     });
     $http.get('/userTrip').then(function(response){
       invitedTripObject.invitedTripArray = response.data;
-      // console.log('Invited Trip: ', invitedTripObject.invitedTripArray);
+      console.log('Invited Trip: ', invitedTripObject.invitedTripArray);
     });
     $http.get('/userTrip/joined').then(function(response){
       joinedTripObject.joinedTripArray = response.data;
@@ -41,7 +41,7 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     // console.log(trip);
     $http.post('/trips', trip).then(function(response){
       // console.log('hit postTrip', trip );
-      console.log('success: ', response );
+      // console.log('success: ', response );
       getTrips();
       $location.path( '/packingList');
     });
@@ -55,32 +55,32 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
       userId : join.user_id
     };
     $http.put('/userTrip', ids ).then(function(response){
-      //   getTrips();
+      getTrips();
     });
   }
 
   function deleteTrip( id ){
     console.log( 'hit deleteTrip for:', id );
-    //   $http({
-    //       method: 'DELETE',
-    //       url: '/trips/' + id,
-    //       headers: {
-    //           'Content-type': 'application/json;charset=utf-8'
-    //       }
-    //   })
-    //   .then(function(response) {
-    //       console.log(response.data);
-    //   }, function(rejection) {
-    //       console.log(rejection.data);
-    //   });
-    //   getTrips();
+      $http({
+          method: 'DELETE',
+          url: '/trips/' + id,
+          headers: {
+              'Content-type': 'application/json;charset=utf-8'
+          }
+      })
+      .then(function(response) {
+          console.log(response.data);
+      }, function(rejection) {
+          console.log(rejection.data);
+      });
+      getTrips();
   }
   //------------------- END TRIPS ------------------
 
   // ---------------------ITEMS ----------------
   //@TODO replace path to get to /:id in trips.js
   function getItems(tripId){
-    console.log('hit getItems', tripId);
+    // console.log('hit getItems', tripId);
     $http({
       method : 'GET',
       url : '/items',
@@ -97,7 +97,7 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     var item = {
       name : addItem.name,
       quantity : addItem.quantity,
-      trip_id : selectedTrip.id
+      trip_id : addItem.id
     };
     console.log('inside factory: ', item);
     $http.post('/items', item).then(function(response){
@@ -106,16 +106,33 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     });
     getItems(item.trip_id);
   } // END postItem
+  //
+  // function claimItem(item){
+  //   // var item assigned in PackingListController
+  //   console.log('inside claimItem factory: ', item);
+  //   $http.post('/items/claim', item).then(function(response){
+  //     console.log('hit post claimItem', response.data );
+  //     // console.log('success: ', response );
+  //   });
+  //   getItems(item.trip_id);
+  // } // END postItem
 
-  function claimItem(item){
-    // var item assigned in PackingListController
-    console.log('inside factory: ', item);
-    $http.post('/items/claim', item).then(function(response){
-      console.log('hit postItem', item );
-      console.log('success: ', response );
-    });
-    getItems(item.trip_id);
-  } // END postItem
+  function deleteItem( dog ){
+    console.log( 'hit deleteTrip for:', dog );
+      $http({
+          method: 'DELETE',
+          url: '/items/' + dog,
+          headers: {
+              'Content-type': 'application/json;charset=utf-8'
+          }
+      })
+      .then(function(response) {
+          console.log(response.data);
+      }, function(rejection) {
+          console.log(rejection.data);
+      });
+      getItems(dog.trip_id);
+  }
   //------------------ END ITEMS ------------
 
   return {
@@ -133,7 +150,8 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     selectedItem : selectedItem,
     joinTrip : joinTrip,
     deleteTrip : deleteTrip,
-    claimItem : claimItem
+    // claimItem : claimItem,
+    deleteItem : deleteItem
   };
 
 }]);// ----------------  END SERVICE -----------
