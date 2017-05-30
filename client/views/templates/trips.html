@@ -23,14 +23,12 @@
     </div>
     <div class="row">
       <h3>Invitations</h3>
-      <div class="invitedTrips well well-lg">
-        <div  ng-repeat=" t in trip.invitedTripObject.invitedTripArray" >
+        <div class="invitedTrips well well-xl" ng-repeat=" t in trip.invitedTripObject.invitedTripArray" >
             <div class="col-sm-3" ng-click="trip.printClickedTrip(t.id) ">
               <h4>{{ t.location }} {{ t.date | date:'mediumDate'}}</h4>
               <button class="joinButton" ng-click="trip.joinTrip(t)">Join</button>
             </div>
         </div>
-      </div>
     </div>
   </div>
   </div>

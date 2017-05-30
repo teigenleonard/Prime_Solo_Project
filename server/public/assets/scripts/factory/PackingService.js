@@ -97,7 +97,7 @@ myApp.factory( 'PackingService', [ '$http', '$location', function($http, $locati
     var item = {
       name : addItem.name,
       quantity : addItem.quantity,
-      trip_id : addItem.id
+      trip_id : selectedTrip.id
     };
     console.log('inside factory: ', item);
     $http.post('/items', item).then(function(response){
