@@ -35,3 +35,21 @@ SELECT *
 WHERE "id" NOT IN (SELECT "user_id"
   FROM "user_trip"
   WHERE "trip_id" = 999);
+
+  ***CODE DUMP***
+  // for loops to access which users have joined which trips by client side code
+  // getUserTrip();
+  // for (var i = 0; i < tripsObject.tripsArray.length; i++) {
+  //   var trip = tripsObject.tripsArray[i];
+  //   console.log(trip);
+  //   for (var j = 0; j < userTripObject.userTripArray.length; j++) {
+  //     var userTrip = userTripObject.userTripArray[j];
+  //     console.log(userTrip, user.user_id);
+  //     if (userTrip.trip_id == trip.trip_id &&
+  //         userTrip.user_id == user.user_id &&
+  //         userTrip.status == 'invited') {
+  //           trip.isInvited = true;
+  //           break;
+  //         }
+  //   }
+  // }
