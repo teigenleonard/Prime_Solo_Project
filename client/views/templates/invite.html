@@ -1,15 +1,19 @@
 <div class= "col-md-12">
-     <form novalidate ng-submit="invite.emailForm(invite.mailObject)">
-       <label>Invite: </label>
-       <input type="text" placeholder="name">
-       <label>Email: </label>
-       <input type="text" ng-model="invite.mailObject.toEmail"><br>
-       <label>Subject: </label>
-       <input type="text" ng-model="invite.mailObject.subject"><br>
-       <label>Message: </label>
-       <input type="text" ng-model="invite.mailObject.message"><br>
-       <label>Include Packing List  </label><input id="checkbox" type="checkbox">
-        <br>
-       <button>Invite Mule</button>
-     </form>
+  <div class="jumbotron">
+    <h2 class="logo">Round Up Your Mules</h2>
+    <form novalidate ng-submit="invite.emailForm(invite.mailObject)">
+      <label>Email: </label>
+      <input type="text" ng-model="invite.mailObject.toEmail">
+      <br>
+      <label>Subject: </label>
+      <input type="text" ng-model="invite.mailObject.subject">
+      <br>
+      <label>Message: </label>
+      <input type="text" ng-model="invite.mailObject.message">
+      <br>
+      <label>Include Packing List  </label><input id="checkbox" type="checkbox">
+       <br>
+      <button>Invite Mule</button>
+    </form>
+  </div>
  </div>

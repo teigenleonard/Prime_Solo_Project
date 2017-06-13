@@ -1,43 +1,11 @@
-myApp.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-    $scope.user = {
-      username: '',
-      password: '',
-      user_id : 1
-    };
-    $scope.message = '';
+myApp.controller('LoginController', ['LoginService', '$scope', '$http', '$location', function(LoginService, $scope, $http, $location) {
+    console.log('loginservice here we are BEFORE: ', LoginService.user);
 
-    $scope.login = function() {
-      if($scope.user.username == '' || $scope.user.password == '') {
-        $scope.message = "Enter your username and password";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/', $scope.user).then(function(response) {
-          if(response.data.username) {
-            console.log('success: ', response.data);
-            // location works with SPA (ng-route)
-            console.log('redirecting to user page');
-            $location.path('/user');
-          } else {
-            console.log('failure: ', response);
-            $scope.message = "Wrong!!";
-          }
-        });
-      }
-    }
+    $scope.log = LoginService.log;
+    $scope.user = LoginService.user;
+    $scope.message = LoginService.message;
+    $scope.login = LoginService.login;
+    $scope.registerUser = LoginService.registerUser;
 
-    $scope.registerUser = function() {
-      if($scope.user.username == '' || $scope.user.password == '') {
-        $scope.message = "Choose a username and password";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/register', $scope.user).then(function(response) {
-          console.log('success');
-          $location.path('/home');
-        },
-        function(response) {
-          console.log('error');
-          $scope.message = "Please try again."
-        });
-      }
-    }
+    console.log('loginservice here we are AFTER: ', LoginService.user);
 }]);

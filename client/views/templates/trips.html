@@ -1,19 +1,34 @@
+
 <div class="container">
-
-    <div class="plannedTrips" ng-repeat=" t in trip.tripsObject.tripsArray" >
-        <div class="row" "col-md-2" ng-click="trip.printClickedTrip(t.id) ">
-          <p>{{ t.location }}</p>
-          <p>{{ t.date | date:'medium'}}</p>
-        </div>
-        <button ng-click="trip.deleteTrip( t.id )">Delete</button>
-        <button class="joinButton" ng-show="t.isInvited">JOIN</button>
-    </div>
-
   <form class="postTrip" ng-submit="trip.postTrip( trip.newTrip )">
     <div>
-      <input type="text" ng-model="trip.newTrip.location" placeholder="LOCATION">
-      <input type="text" ng-model="trip.newTrip.date" placeholder="DATE">
+      <input type="text" ng-model="trip.newTrip.location" placeholder="l o c a t i o n">
+      <input type="text" ng-model="trip.newTrip.date" placeholder="mm / dd / yy">
       <button>Add Trip</button>
     </div>
   </form>
-</div>
+  <div class="row">
+    <h2>Trip Plans</h2>
+    <div class="plannedTrips well well-lg" ng-repeat=" t in trip.createdTripObject.createdTripArray" >
+        <div class="row" "col-md-3" ng-click="trip.printClickedTrip(t.id) ">
+          <h4>{{ t.location }} {{ t.date | date:'mediumDate'}}</h4>
+        </div>
+        <button ng-click="trip.inviteTrip( t.id )">Invite</button>
+        <button ng-click="trip.deleteTrip( t.id )">Delete</button>
+    </div>
+    <div class="plannedTrips well well-lg" ng-repeat=" t in trip.joinedTripObject.joinedTripArray" >
+        <div class="col-md-3" ng-click="trip.printClickedTrip(t.id) ">
+          <h4>{{ t.location }} {{ t.date | date:'mediumDate'}}</h4>
+        </div>
+    </div>
+    <div class="row">
+      <h3>Invitations</h3>
+        <div class="invitedTrips well well-xl" ng-repeat=" t in trip.invitedTripObject.invitedTripArray" >
+            <div class="col-sm-3" ng-click="trip.printClickedTrip(t.id) ">
+              <h4>{{ t.location }} {{ t.date | date:'mediumDate'}}</h4>
+              <button class="joinButton" ng-click="trip.joinTrip(t)">Join</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>

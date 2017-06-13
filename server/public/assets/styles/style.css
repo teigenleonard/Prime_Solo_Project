@@ -12,6 +12,40 @@
   display: inline-block;
 
 }
+.logo{
+  font: Comic;
+
+}
+
+.jumbotron {
+    text-align: center;
+    border-bottom: .20rem solid #e5e5e5;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: #8FAAD4;
+
+}
+.plannedTrips{
+  height: 150px;
+  width: 200px;
+  background: lightblue;
+  display: inline-block;
+  margin: 10px;
+}
+.invitedTrips{
+  height: 150px;
+  width: 200px;
+  background: lightblue;
+  display: inline-block;
+  margin: 10px;
+}
+.packingList{
+  background-color: lightblue;
+  display: inline-block;
+}
+input{
+  margin: 5px;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -33,14 +67,14 @@ li a {
   font-family : 'Lucida Console', Monaco, monospace;
 
 }
-
 li a:hover {
-  background-color: lightslategrey;
+  background-color: lightblue;
 }
 
 
 #entryForm {
     margin-top: 14px;
+    margin-bottom: 14px;
 }
 
 #container {
